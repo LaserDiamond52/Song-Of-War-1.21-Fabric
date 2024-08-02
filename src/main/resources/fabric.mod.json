@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "songsofwar",
+	"version": "${version}",
+	"name": "SongsOfWar",
+	"description": "This is a mod inspired by the Minecraft animation series 'Songs of War' by Black Plasma Studios",
+	"authors": [
+		"LaserDiamond52"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/songsofwar/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.laserdiamond.SongsOfWar"
+		],
+		"client": [
+			"net.laserdiamond.SongsOfWarClient"
+		],
+		"fabric-datagen": [
+			"net.laserdiamond.SongsOfWarDataGenerator"
+		]
+	},
+	"mixins": [
+		"songsofwar.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
