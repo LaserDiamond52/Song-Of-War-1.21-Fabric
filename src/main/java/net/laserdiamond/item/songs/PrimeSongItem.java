@@ -1,6 +1,6 @@
 package net.laserdiamond.item.songs;
 
-import net.laserdiamond.item.songs.orders.SongOrder;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 
 import java.util.List;
 
@@ -16,13 +16,13 @@ public abstract class PrimeSongItem extends SongItem {
     }
 
     @Override
-    public void onSongCast() {
+    public void onSongCast(ServerPlayNetworking.Context context) {
 
     }
 
     public int getSongCount()
     {
-        List<SongOrderSpells> songs = songOrder.getSongOrderSpells();
+        List<SongOrderSpell> songs = songOrder.getSongOrderSpells();
         return songs.size() + 1;
     }
 

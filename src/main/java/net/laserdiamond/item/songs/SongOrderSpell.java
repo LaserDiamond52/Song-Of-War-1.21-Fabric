@@ -1,6 +1,6 @@
 package net.laserdiamond.item.songs;
 
-public interface SongOrderSpells {
+public interface SongOrderSpell {
 
     /**
      * Gets the name of the Song

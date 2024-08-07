@@ -4,7 +4,6 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.laserdiamond.SongsOfWar;
 import net.laserdiamond.item.songs.SongItem;
-import net.laserdiamond.item.songs.orders.Aggressium;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;

@@ -20,7 +20,7 @@ public class SongCastC2SPacket {
             if (SongManaData.getSongMana((IEntityDataSaver) player) >= payload.buf().getSongManaAmount())
             {
                 SongManaData.removeSongMana(player, ((IEntityDataSaver) player), payload.buf().getSongManaAmount());
-                songItem.onSongCast();
+                songItem.onSongCast(context);
             }
         }
     }

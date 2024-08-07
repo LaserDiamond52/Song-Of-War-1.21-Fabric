@@ -11,12 +11,9 @@ import net.laserdiamond.networking.packet.songcast.SongCastPayload;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
-
-import java.util.Objects;
 
 public class KeyInputHandler {
 
@@ -35,20 +32,18 @@ public class KeyInputHandler {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             // ON CLIENT
 
-            ClientPlayerEntity clientPlayerEntity = Objects.requireNonNull(client.player);
-            ItemStack mainHandStack = clientPlayerEntity.getMainHandStack();
-            ItemStack offHandStack = clientPlayerEntity.getOffHandStack();
+            //ClientPlayerEntity clientPlayerEntity = client.player;
 
             if (castSongKey.wasPressed())
             {
                 // Cast song ability
 
-                if (mainHandStack.getItem() instanceof SongItem songItem) // Mainhand is checked first for a song item
+                if (client.player.getInventory().getMainHandStack().getItem() instanceof SongItem songItem) // Mainhand is checked first for a song item
                 {
-                    castSong(clientPlayerEntity, songItem); // Song item in mainhand. Offhand is ignored
-                } else if (offHandStack.getItem() instanceof SongItem songItem) // Offhand is checked next if the mainhand is not a song item
+                    castSong(client.player, songItem); // Song item in mainhand. Offhand is ignored
+                } else if (client.player.getOffHandStack().getItem() instanceof SongItem songItem) // Offhand is checked next if the mainhand is not a song item
                 {
-                    castSong(clientPlayerEntity, songItem); // Song item in offhand
+                    castSong(client.player, songItem); // Song item in offhand
                 }
 
             } else if (switchSongSpellKey1.wasPressed())
@@ -56,37 +51,37 @@ public class KeyInputHandler {
                 // Switch song ability (Prime Song)
                 client.player.sendMessage(Text.of("Switch to Song Spell 1"));
 
-                songSelect(mainHandStack, offHandStack, 1);
+                songSelect(client.player, 1);
             } else if (switchSongSpellKey2.wasPressed())
             {
                 client.player.sendMessage(Text.of("Switch to Song Spell 2"));
 
-                songSelect(mainHandStack, offHandStack, 2);
+                songSelect(client.player, 2);
             } else if (switchSongSpellKey3.wasPressed())
             {
                 client.player.sendMessage(Text.of("Switch to Song Spell 3"));
 
-                songSelect(mainHandStack, offHandStack, 3);
+                songSelect(client.player, 3);
             } else if (switchSongSpellKey4.wasPressed())
             {
                 client.player.sendMessage(Text.of("Switch to Song Spell 4"));
 
-                songSelect(mainHandStack, offHandStack, 4);
+                songSelect(client.player, 4);
             } else if (switchSongSpellKey5.wasPressed())
             {
                 client.player.sendMessage(Text.of("Switch to Song Spell 5"));
 
-                songSelect(mainHandStack, offHandStack, 5);
+                songSelect(client.player, 5);
             }
         });
     }
 
-    private static void songSelect(ItemStack mainHand, ItemStack offHand, int select)
+    private static void songSelect(ClientPlayerEntity player, int select)
     {
-        if (mainHand.getItem() instanceof PrimeSongItem primeSongItem)
+        if (player.getMainHandStack().getItem() instanceof PrimeSongItem primeSongItem)
         {
             primeSongItem.setSelectedSongSpell(select);
-        } else if (offHand.getItem() instanceof PrimeSongItem primeSongItem)
+        } else if (player.getOffHandStack().getItem() instanceof PrimeSongItem primeSongItem)
         {
             primeSongItem.setSelectedSongSpell(select);
         }
@@ -96,7 +91,7 @@ public class KeyInputHandler {
     {
         clientPlayerEntity.sendMessage(Text.of("Cast Song"));
         PacketByteBuf buf = PacketByteBufs.create();
-        buf.writeDouble(songItem.songManaCost()); // Write song mana cost to PacketByteBuf
+        buf.writeDouble(songItem.songManaCost(clientPlayerEntity)); // Write song mana cost to PacketByteBuf
         ClientPlayNetworking.send(new SongCastPayload(new SongCastC2SPacket.ByteBuf(buf))); // Send packet from client to server
     }
 
@@ -104,10 +99,10 @@ public class KeyInputHandler {
     {
         castSongKey = registerKeyboardBinding(CAST_SONG_KEY, GLFW.GLFW_KEY_G);
         switchSongSpellKey1 = registerKeyboardBinding(SWITCH_SONG_SPELL_KEY_1, GLFW.GLFW_KEY_R);
-        switchSongSpellKey2 = registerKeyboardBinding(SWITCH_SONG_SPELL_KEY_2, GLFW.GLFW_KEY_T);
-        switchSongSpellKey3 = registerKeyboardBinding(SWITCH_SONG_SPELL_KEY_3, GLFW.GLFW_KEY_X);
-        switchSongSpellKey4 = registerKeyboardBinding(SWITCH_SONG_SPELL_KEY_4, GLFW.GLFW_KEY_C);
-        switchSongSpellKey5 = registerKeyboardBinding(SWITCH_SONG_SPELL_KEY_5, GLFW.GLFW_KEY_V);
+        switchSongSpellKey2 = registerKeyboardBinding(SWITCH_SONG_SPELL_KEY_2, GLFW.GLFW_KEY_Z);
+        switchSongSpellKey3 = registerKeyboardBinding(SWITCH_SONG_SPELL_KEY_3, GLFW.GLFW_KEY_C);
+        switchSongSpellKey4 = registerKeyboardBinding(SWITCH_SONG_SPELL_KEY_4, GLFW.GLFW_KEY_V);
+        switchSongSpellKey5 = registerKeyboardBinding(SWITCH_SONG_SPELL_KEY_5, GLFW.GLFW_KEY_B);
 
         registerKeyInputs();
     }
