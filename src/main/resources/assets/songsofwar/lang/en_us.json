@@ -1,0 +1,40 @@
+{
+  "item.songsofwar.nether_blade": "Nether Blade",
+  "item.songsofwar.ender_blade": "Ender Blade",
+
+  "item.songsofwar.sendaris_helmet": "Sendaris Helmet",
+  "item.songsofwar.sendaris_chestplate": "Sendaris Chestplate",
+  "item.songsofwar.sendaris_leggings": "Sendaris Leggings",
+  "item.songsofwar.sendaris_boots": "Sendaris Boots",
+
+  "item.songsofwar.kaltaris_helmet": "Kaltaris Helmet",
+  "item.songsofwar.kaltaris_chestplate": "Kaltaris Chestplate",
+  "item.songsofwar.kaltaris_leggings": "Kaltaris Leggings",
+  "item.songsofwar.kaltaris_boots": "Kaltaris Boots",
+
+  "item.songsofwar.voltaris_helmet": "Voltaris Helmet",
+  "item.songsofwar.voltaris_chestplate": "Voltaris Chestplate",
+  "item.songsofwar.voltaris_leggings": "Voltaris Leggings",
+  "item.songsofwar.voltaris_boots": "Voltaris Boots",
+
+  "item.songsofwar.nestoris_helmet": "Nestoris Helmet",
+  "item.songsofwar.nestoris_chestplate": "Nestoris Chestplate",
+  "item.songsofwar.nestoris_leggings": "Nestoris Leggings",
+  "item.songsofwar.nestoris_boots": "Nestoris Boots",
+
+  "item.songsofwar.mendoris_helmet": "Mendoris Helmet",
+  "item.songsofwar.mendoris_chestplate": "Mendoris Chestplate",
+  "item.songsofwar.mendoris_leggings": "Mendoris Leggings",
+  "item.songsofwar.mendoris_boots": "Mendoris Boots",
+
+  "attribute.name.player.song_power": "Song Power",
+  "attribute.name.player.song_mana": "Song Mana",
+
+  "key.category.songsofwar": "Songs Of War",
+  "key.songsofwar.cast_song": "Cast Song Spell",
+  "key.songsofwar.switch_song_spell_1": "Switch To Song Spell 1",
+  "key.songsofwar.switch_song_spell_2": "Switch To Song Spell 2",
+  "key.songsofwar.switch_song_spell_3": "Switch To Song Spell 3",
+  "key.songsofwar.switch_song_spell_4": "Switch To Song Spell 4",
+  "key.songsofwar.switch_song_spell_5": "Switch To Song Spell 5"
+}
