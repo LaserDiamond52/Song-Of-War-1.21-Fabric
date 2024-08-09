@@ -4,6 +4,8 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.laserdiamond.SongsOfWar;
 import net.laserdiamond.item.songs.SongItem;
+import net.laserdiamond.item.songs.prime.AggressiumPrimeSongItem;
+import net.laserdiamond.item.songs.singular.AggressiumSongItem;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
@@ -92,6 +94,10 @@ public class SOWItems {
     // which when clicked on, turns into one of the following songs from said category. This is
     // the craftable variant
 
+    public static final AggressiumSongItem AGGRESSIUM_SONG = registerItem("aggressium_song", new AggressiumSongItem(new Item.Settings()));
+
+    public static final AggressiumPrimeSongItem AGGRESSIUM_PRIME_SONG = registerItem("aggressium_prime_song", new AggressiumPrimeSongItem(new Item.Settings()));
+
     // Aggressium:
     /*
         Aggrobeam
@@ -141,6 +147,9 @@ public class SOWItems {
             {
                 entries.add(item);
             } else if (item instanceof ArmorItem)
+            {
+                entries.add(item);
+            } else if (item instanceof SongItem)
             {
                 entries.add(item);
             }

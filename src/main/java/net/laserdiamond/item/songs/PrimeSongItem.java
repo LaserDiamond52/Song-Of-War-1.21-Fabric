@@ -1,8 +1,9 @@
 package net.laserdiamond.item.songs;
 
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-
-import java.util.List;
+import net.laserdiamond.item.components.SOWComponents;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.text.Text;
 
 public abstract class PrimeSongItem extends SongItem {
 
@@ -10,20 +11,12 @@ public abstract class PrimeSongItem extends SongItem {
         super(settings, songOrder);
     }
 
-    public void setSelectedSongSpell(int songSpell)
+    public void setSelectedSongSpell(int songSpell, PlayerEntity playerEntity, ItemStack itemStack)
     {
         // TODO: Fires when user pressed song select key, and sets the Song on the item (set nbt on item)
-    }
 
-    @Override
-    public void onSongCast(ServerPlayNetworking.Context context) {
-
-    }
-
-    public int getSongCount()
-    {
-        List<SongOrderSpell> songs = songOrder.getSongOrderSpells();
-        return songs.size() + 1;
+        itemStack.set(SOWComponents.SONG_SPELL, songSpell);
+        playerEntity.sendMessage(Text.of("Set Song Spell to Song " + songSpell));
     }
 
 }

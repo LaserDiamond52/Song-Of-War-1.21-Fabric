@@ -8,6 +8,8 @@ import net.laserdiamond.item.songs.PrimeSongItem;
 import net.laserdiamond.item.songs.SongItem;
 import net.laserdiamond.networking.packet.songcast.SongCastC2SPacket;
 import net.laserdiamond.networking.packet.songcast.SongCastPayload;
+import net.laserdiamond.networking.packet.songchange.SongChangeC2SPacket;
+import net.laserdiamond.networking.packet.songchange.SongChangePayload;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
@@ -78,13 +80,9 @@ public class KeyInputHandler {
 
     private static void songSelect(ClientPlayerEntity player, int select)
     {
-        if (player.getMainHandStack().getItem() instanceof PrimeSongItem primeSongItem)
-        {
-            primeSongItem.setSelectedSongSpell(select);
-        } else if (player.getOffHandStack().getItem() instanceof PrimeSongItem primeSongItem)
-        {
-            primeSongItem.setSelectedSongSpell(select);
-        }
+        PacketByteBuf buf = PacketByteBufs.create();
+        buf.writeInt(select);
+        ClientPlayNetworking.send(new SongChangePayload(new SongChangeC2SPacket.ByteBuf(buf)));
     }
 
     private static void castSong(ClientPlayerEntity clientPlayerEntity, SongItem songItem)

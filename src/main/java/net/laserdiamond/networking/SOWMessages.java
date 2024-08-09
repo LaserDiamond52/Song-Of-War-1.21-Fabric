@@ -6,6 +6,8 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.laserdiamond.SongsOfWar;
 import net.laserdiamond.networking.packet.songcast.SongCastC2SPacket;
 import net.laserdiamond.networking.packet.songcast.SongCastPayload;
+import net.laserdiamond.networking.packet.songchange.SongChangeC2SPacket;
+import net.laserdiamond.networking.packet.songchange.SongChangePayload;
 import net.laserdiamond.networking.packet.songmanasync.SongManaSyncDataPayload;
 import net.laserdiamond.networking.packet.songmanasync.SongManaSyncDataS2CPacket;
 import net.minecraft.util.Identifier;
@@ -22,6 +24,8 @@ public class SOWMessages {
         ServerPlayNetworking.registerGlobalReceiver(SongCastPayload.ID, SongCastC2SPacket::receive);
 
         // TODO: Keybinding for switching songs
+        PayloadTypeRegistry.playC2S().register(SongChangePayload.ID, SongChangePayload.CODEC);
+        ServerPlayNetworking.registerGlobalReceiver(SongChangePayload.ID, SongChangeC2SPacket::receive);
     }
 
     public static void registerS2CPackets()

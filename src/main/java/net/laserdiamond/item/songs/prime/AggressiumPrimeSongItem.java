@@ -1,15 +1,15 @@
-package net.laserdiamond.item.songs.singular;
+package net.laserdiamond.item.songs.prime;
 
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.laserdiamond.item.songs.SongItem;
+import net.laserdiamond.item.songs.PrimeSongItem;
 import net.laserdiamond.item.songs.SongOrder;
 import net.laserdiamond.item.songs.SongOrderSpell;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
 
-public class AggressiumSongItem extends SongItem {
+public class AggressiumPrimeSongItem extends PrimeSongItem {
 
-    public AggressiumSongItem(Settings settings) {
+    public AggressiumPrimeSongItem(Settings settings) {
         super(settings, SongOrder.AGGRESSIUM);
     }
 
@@ -22,7 +22,7 @@ public class AggressiumSongItem extends SongItem {
 
         playerEntity.sendMessage(Text.of(songOrderSpell.getSongName()));
 
-        String s = "";
+        String s;
         switch (songInt)
         {
             case 0:
@@ -50,9 +50,9 @@ public class AggressiumSongItem extends SongItem {
                 break;
             default:
                 throw new IllegalArgumentException("No spell for integer: " + songInt);
+
         }
 
         playerEntity.sendMessage(Text.of(s));
-
     }
 }
